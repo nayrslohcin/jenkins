@@ -16,15 +16,16 @@ Vagrant.configure(2) do |config|
         vb.memory = "512"
 	mybox.vm.network "forwarded_port", guest: 80, host: 8888
     config.vm.provision "shell", inline: <<-SHELL
-        mkdir /home/vagrant/source
-	chown vagrant.vagrant /home/vagrant/source
-        echo "run the following to download the IaaS repository: git clone https://<username>@marykay.visualstudio.com/DefaultCollection/IaaS/_git/IaaS"
+        #mkdir /home/vagrant/source
+	#chown vagrant.vagrant /home/vagrant/source
+        #echo "run the following to download the IaaS repository: git clone https://<username>@marykay.visualstudio.com/DefaultCollection/IaaS/_git/IaaS"
 	yum -y --disablerepo="epel" install java
-	wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
-	yum -y --disablerepo="epel" install jenkins
-	service jenkins start
+	#wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+	#yum -y --disablerepo="epel" install jenkins
+	#service jenkins start
 	#chkconfig jenkins on
 	iptables -I INPUT 4 -p tcp --dport 8080 -j ACCEPT
+	/vagrant/jenkins_custom.sh
 
     SHELL
 	end
