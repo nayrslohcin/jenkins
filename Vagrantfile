@@ -8,13 +8,13 @@
 Vagrant.configure(2) do |config|
 	#config.vm.box_url
 	#
-    config.vm.define "mybox" do |mybox|
-	mybox.vm.box = "test"
-        mybox.vm.box = "puphpet/centos65-x64"
-	mybox.vm.network "private_network", ip: "192.168.33.11" 
-	mybox.vm.provider "virtualbox" do |vb|
+    config.vm.define "jenkins" do |jenkins|
+	jenkins.vm.box = "jenkins"
+        jenkins.vm.box = "puphpet/centos65-x64"
+	jenkins.vm.network "private_network", ip: "192.168.33.11" 
+	jenkins.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
-	mybox.vm.network "forwarded_port", guest: 8080, host: 8888
+	jenkins.vm.network "forwarded_port", guest: 8080, host: 8888
     config.vm.provision "shell", inline: <<-SHELL
         #mkdir /home/vagrant/source
 	#chown vagrant.vagrant /home/vagrant/source
