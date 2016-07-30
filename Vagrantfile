@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
 	mybox.vm.network "private_network", ip: "192.168.33.11" 
 	mybox.vm.provider "virtualbox" do |vb|
         vb.memory = "512"
-	mybox.vm.network "forwarded_port", guest: 80, host: 8888
+	mybox.vm.network "forwarded_port", guest: 8080, host: 8888
     config.vm.provision "shell", inline: <<-SHELL
         #mkdir /home/vagrant/source
 	#chown vagrant.vagrant /home/vagrant/source
